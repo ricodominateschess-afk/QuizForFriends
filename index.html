@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>QuizForFriends 🌊</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="ocean">
+
+    <!-- =========================
+         BUBBLES
+    ========================== -->
+
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+    <div class="bubble b4"></div>
+    <div class="bubble b5"></div>
+
+
+    <!-- =========================
+         FISH
+    ========================== -->
+
+    <div class="fish fish1">🐠</div>
+    <div class="fish fish2">🐟</div>
+    <div class="fish fish3">🐡</div>
+
+
+    <!-- =========================
+         MAIN CONTAINER
+    ========================== -->
+
+    <main class="container">
+
+
+        <!-- =========================
+             HOME
+        ========================== -->
+
+        <section
+            id="home"
+            class="screen active"
+        >
+
+            <div class="logo">
+                🌊
+            </div>
+
+            <h1>
+                QuizForFriends
+            </h1>
+
+            <p class="subtitle">
+                Make quizzes.<br>
+                Challenge your friends.
+            </p>
+
+
+            <button
+                type="button"
+                class="main-btn"
+                onclick="showNameScreen()"
+            >
+                🎮 TAKE RICO QUIZ
+            </button>
+
+
+            <button
+                type="button"
+                class="secondary-btn"
+                onclick="showCommunity()"
+            >
+                👥 COMMUNITY QUIZZES
+            </button>
+
+
+            <button
+                type="button"
+                class="secondary-btn"
+                onclick="showCreateScreen()"
+            >
+                ✏️ CREATE A QUIZ
+            </button>
+
+
+            <button
+                type="button"
+                class="link-btn"
+                onclick="showLeaderboard()"
+            >
+                🏆 LEADERBOARD
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             NAME SCREEN
+        ========================== -->
+
+        <section
+            id="nameScreen"
+            class="screen"
+        >
+
+            <div class="icon">
+                👤
+            </div>
+
+            <h2>
+                What's your name?
+            </h2>
+
+            <p>
+                Enter your name before playing.
+            </p>
+
+
+            <input
+                type="text"
+                id="playerName"
+                placeholder="Your name..."
+                maxlength="20"
+            >
+
+
+            <button
+                type="button"
+                class="main-btn"
+                onclick="startRicoQuiz()"
+            >
+                START QUIZ 🌊
+            </button>
+
+
+            <button
+                type="button"
+                class="back-btn"
+                onclick="goHome()"
+            >
+                ← Back
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             COMMUNITY QUIZZES
+        ========================== -->
+
+        <section
+            id="communityScreen"
+            class="screen"
+        >
+
+            <div class="icon">
+                👥
+            </div>
+
+            <h1>
+                Community Quizzes
+            </h1>
+
+            <p>
+                Play quizzes created by your friends.
+            </p>
+
+
+            <div id="quizList">
+
+                <p>
+                    Loading quizzes...
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="secondary-btn"
+                onclick="showCreateScreen()"
+            >
+                ✏️ CREATE YOUR OWN
+            </button>
+
+
+            <button
+                type="button"
+                class="back-btn"
+                onclick="goHome()"
+            >
+                ← Back
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             QUIZ SCREEN
+        ========================== -->
+
+        <section
+            id="quizScreen"
+            class="screen"
+        >
+
+            <div class="quiz-top">
+
+                <span id="quizTitleDisplay">
+                    Rico Quiz
+                </span>
+
+                <span id="scoreText">
+                    Score: 0
+                </span>
+
+            </div>
+
+
+            <div class="quiz-top">
+
+                <span id="questionNumber">
+                    Question 1/19
+                </span>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress">
+
+                <div id="progressBar"></div>
+
+            </div>
+
+
+            <!-- QUESTION CARD -->
+
+            <div class="card">
+
+                <h2 id="question">
+                    Question
+                </h2>
+
+
+                <div id="answers"></div>
+
+
+                <button
+                    type="button"
+                    id="nextButton"
+                    class="next-btn"
+                    onclick="nextQuestion()"
+                    disabled
+                >
+                    NEXT →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RESULT SCREEN
+        ========================== -->
+
+        <section
+            id="resultScreen"
+            class="screen"
+        >
+
+            <div
+                id="resultEmoji"
+                class="result-emoji"
+            >
+                🏆
+            </div>
+
+
+            <h1 id="resultTitle">
+                Great job!
+            </h1>
+
+
+            <div class="score">
+
+                <span id="finalScore">
+                    0
+                </span>
+
+                <small id="finalTotal">
+                    /19
+                </small>
+
+            </div>
+
+
+            <div class="analysis">
+
+                <h3>
+                    📊 Your Result
+                </h3>
+
+                <p id="percentage">
+                    0% correct
+                </p>
+
+                <p id="resultMessage">
+                    Nice!
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="main-btn"
+                onclick="showLeaderboard()"
+            >
+                🏆 VIEW LEADERBOARD
+            </button>
+
+
+            <button
+                type="button"
+                class="secondary-btn"
+                onclick="showCommunity()"
+            >
+                👥 COMMUNITY QUIZZES
+            </button>
+
+
+            <button
+                type="button"
+                class="back-btn"
+                onclick="goHome()"
+            >
+                ← HOME
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             LEADERBOARD
+        ========================== -->
+
+        <section
+            id="leaderboardScreen"
+            class="screen"
+        >
+
+            <div class="icon">
+                🏆
+            </div>
+
+            <h1>
+                Leaderboard
+            </h1>
+
+            <p>
+                See who's on top.
+            </p>
+
+
+            <div id="leaderboardList">
+
+                <p>
+                    Loading leaderboard...
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="secondary-btn"
+                onclick="showCommunity()"
+            >
+                👥 COMMUNITY QUIZZES
+            </button>
+
+
+            <button
+                type="button"
+                class="back-btn"
+                onclick="goHome()"
+            >
+                ← Back
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             CREATE QUIZ
+        ========================== -->
+
+        <section
+            id="createScreen"
+            class="screen"
+        >
+
+            <div class="icon">
+                ✏️
+            </div>
+
+
+            <h1>
+                Create a Quiz
+            </h1>
+
+
+            <p>
+                Make your own quiz and send it to your friends!
+            </p>
+
+
+            <!-- QUIZ TITLE -->
+
+            <input
+                type="text"
+                id="quizTitle"
+                placeholder="Quiz title..."
+                maxlength="40"
+            >
+
+
+            <!-- CREATOR NAME -->
+
+            <input
+                type="text"
+                id="quizCreator"
+                placeholder="Your name..."
+                maxlength="20"
+            >
+
+
+            <!-- QUESTIONS -->
+
+            <div id="questionBuilder">
+
+
+                <!-- FIRST QUESTION -->
+
+                <div class="builder-card">
+
+
+                    <input
+                        type="text"
+                        class="new-question"
+                        placeholder="Question..."
+                    >
+
+
+                    <input
+                        type="text"
+                        class="new-answer"
+                        placeholder="Answer A"
+                    >
+
+
+                    <input
+                        type="text"
+                        class="new-answer"
+                        placeholder="Answer B"
+                    >
+
+
+                    <input
+                        type="text"
+                        class="new-answer"
+                        placeholder="Answer C"
+                    >
+
+
+                    <input
+                        type="text"
+                        class="new-answer"
+                        placeholder="Answer D"
+                    >
+
+
+                    <select
+                        class="correct-answer"
+                    >
+
+                        <option value="0">
+                            Correct: A
+                        </option>
+
+                        <option value="1">
+                            Correct: B
+                        </option>
+
+                        <option value="2">
+                            Correct: C
+                        </option>
+
+                        <option value="3">
+                            Correct: D
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- ADD QUESTION -->
+
+            <button
+                type="button"
+                class="secondary-btn"
+                onclick="addQuestion()"
+            >
+                + ADD QUESTION
+            </button>
+
+
+            <!-- CREATE QUIZ -->
+
+            <button
+                type="button"
+                class="main-btn"
+                onclick="createQuiz()"
+            >
+                🚀 CREATE QUIZ
+            </button>
+
+
+            <!-- BACK -->
+
+                        <button
+                type="button"
+                class="back-btn"
+                onclick="goHome()"
+            >
+                ← Back
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             QUIZ CREATED SUCCESS
+        ========================== -->
+
+        <section
+            id="successScreen"
+            class="screen"
+        >
+
+            <div class="result-emoji">
+                🎉
+            </div>
+
+            <h1>
+                Quiz Created!
+            </h1>
+
+            <p>
+                Your quiz is now available for your friends.
+            </p>
+
+            <p>
+                Send them this link:
+            </p>
+
+
+            <input
+                type="text"
+                id="shareLink"
+                readonly
+                onclick="this.select()"
+            >
+
+
+            <button
+                type="button"
+                class="main-btn"
+                onclick="copyShareLink()"
+            >
+                📋 COPY LINK
+            </button>
+
+
+            <button
+                type="button"
+                class="secondary-btn"
+                onclick="showCommunity()"
+            >
+                👥 VIEW COMMUNITY
+            </button>
+
+
+            <button
+                type="button"
+                class="back-btn"
+                onclick="goHome()"
+            >
+                ← HOME
+            </button>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         OCEAN FLOOR
+    ========================== -->
+
+    <div class="floor">
+        🪸 🐚 🪸 🐚 🪸
+    </div>
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script
+    type="module"
+    src="./script.js"
+></script>
+
+</body>
+
+</html>
